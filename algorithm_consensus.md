@@ -72,5 +72,84 @@ about it due to the non-repudiation properties of private key signature.
 
 ### Applications
 
-### API
+### Caveats
 
+- Determinism
+
+The algorithm must be deterministic in order for the peers to be able to verify
+the output. For example, if the algorithm to be ran needs to use a current
+timestamp or randomized number, the output will inevitably differ from peer to
+peer. To avoid this, the algorithm should take all the variables as input so
+that the execution can be replicated in different execution environments.
+
+- Algorithm agreement and distribution
+
+The algorithm must be well known by every peer in the network. Every peer must
+be able to run it in a deterministic way. This poses challenges to identifying,
+discovering and distribution of the algorithm.
+
+### Protocol details and API
+
+#### A computation request format:
+
+```javascript
+request = {
+	id: "5b990d9a68348633aeffacf8eb7ac714",
+	fn_sig: "4d18db80e353e526ad6d42a62aaa29be",
+	input: [{},{},{},...{}]
+}
+```
+
+Where: 
+
+- `id` is a locally unique identifier for the request;
+- `fn_sig` is the signature (md5/sha,...) of the function to run;
+- `input` is a list of objects. Each object represents the input of one 
+computation;
+
+The request must be signed by the requester.
+
+#### A computation response format:
+
+```javascript
+	reponse = {
+		id: "c6646510dcdc4d2fc990af4b88ce3de9,
+		req: { ...request },
+		output: [{}, {},... {}]
+	}
+```
+
+Where:
+
+- `id` is a locally unique identifier for the response;
+- `req` is a copy of the signed request
+- `output` is a list of objects. Each object represents an output relative to
+the requested input. 
+
+The response must be signed by the peer provider.
+
+#### API
+
+```javascript
+result = verify(Fn(), response, provider_pubkey, Sf)
+```
+
+Where:
+
+- `Fn` is the function or pointer to the binary that is supposed to be verified
+- `response` is the response object received from the provider peer. It contains
+  the outputs to be verified against `Fn()`
+- `provider_pubkey` is the provider peer public
+- `Sf` is the sampling frequency. The `Sf` value can be between 0 and 1, in
+  which 0 means no sampling and 1 means sampling all the outputs.
+- `result` is an object describing the verification result. The result object is
+as follows:
+
+```javascript
+result = {
+	Sn: 0.3,
+	Fn: Fn(),
+	ok: [true, ..., false],
+	results: [{}, ..., {}]
+}
+``` 
