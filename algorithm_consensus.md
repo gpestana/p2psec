@@ -72,6 +72,19 @@ about it due to the non-repudiation properties of private key signature.
 
 ### Applications
 
+Any P2P network in which peers share computation work of a well known algorithm
+and in which peers need to have a controllable degree of trust on the results
+received by other - possibly unknown - peers.
+
+**decentralized p2p search indexer**: each node crawls and rates webpages based
+on a well known algorithm. The results can be shared across the network. This
+protocol creates the mechanisms and incentives for nodes to use the correct
+indexing algorithm and not spread poisonous indexed results to the network.
+
+**distributed data processing**: applications like SETI@Home and others can
+leverage this protocol to make sure the data received from other nodes are
+according to the expected algorithm.
+
 ### Caveats
 
 - Determinism
@@ -113,7 +126,7 @@ The request must be signed by the requester.
 
 ```javascript
 	reponse = {
-		id: "c6646510dcdc4d2fc990af4b88ce3de9,
+		id: "c6646510dcdc4d2fc990af4b88ce3de9",
 		req: { ...request },
 		output: [{}, {},... {}]
 	}
@@ -153,3 +166,7 @@ result = {
 	results: [{}, ..., {}]
 }
 ``` 
+
+#### Acks
+
+Thanks @mikhaelsantos and @sergioisidoro for the discussions and ideas
