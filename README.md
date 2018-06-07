@@ -1,3 +1,3 @@
-## p2p security
+## p2p and security
 
-Research on P2P security
+Research notes on decentralized security and privacy

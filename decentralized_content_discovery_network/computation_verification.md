@@ -1,7 +1,9 @@
-## Protocol for computation checking in P2P networks
+## Protocol for computation verification in P2P networks
 
-A protocol for checking if peers in a p2p network are performing valid
-computations of a well known algorithm.
+A protocol for computation verification in a p2p network in which peers request 
+and perform computation of a well known algorithm. The protocol is an
+implementation of a result verification scheme coupled with a reputation
+system, which helps to reduce the computation overhead of result verification.
 
 ### Context
 
@@ -15,7 +17,7 @@ expects that the output received are valid. A set of received outputs
 
  - Given a function `F(x)`, the output `Ox` is valid for `Ix` iff `F(In) == On`
 
-### Problem
+### Problem 
 
 In a completely decentralized network in which different peers request and serve
 computation without any mechanism of trust, how can a requester peer - who asks
@@ -29,7 +31,71 @@ protocol is to create a mechanism for peers in the network to collectively
 ensure that requesters are providing valid outputs, while minimizing local
 computation.
 
-## Protocol for computation checking in P2P network
+### Literature review
+
+**Voting/replication solution**
+
+Voting or replication is a generic solution for the computation verification
+problem in p2p networks [1], [3]. It consists of requesting multiple peers the
+computation results of the same input and select the output which was returned
+by the majority. This solution requires that at least 51% of the peers who
+provide the results are not compromised and return 100% correct results.
+Replication has high overhead too - the same computation needs to be processed
+by multiple peers.
+
+Another disadvantage of the replication approach is the need for multiple peers
+be willing to process the request. Depending on the network architecture and
+protocol, this might not be the case (e.g. only certain peers in the network
+serve a subset of the inputs).
+
+This approach has been used by SETI@home [1] grid computing network.
+
+**Quiz solution**
+
+As presented by [1], "The basic idea of Quiz is to insert indistinguishable quiz
+tasks with verifiable results known to the client into a package of normal 
+tasks. The client can then accept or reject the task results based on the 
+correctness of quiz results." [1] also presents a quiz generation algorithm that
+optimizes the accuracy and overhead of the quiz based on a reputation system.
+
+**Reputation system**
+
+Reputation systems may be coupled with the computation verification protocol in
+order for peers in the network to require less verification steps, thus reducing
+the computation overhead. The relation between trust and computation overhead is
+inversely proportional: the highest the trust, the lowest the overhead required.
+
+[3] Uses a reputation system based on multiple techniques - voting,
+spot-checking and others - and builds up metrics which define the optimal use of
+computational redundancy.
+
+[1] proposes a *trust-based scheduling* which the verification scheme is coupled
+with a reputation system and they show that it helps the accuracy to converge
+to 100% over time while decrease computation overhead.
+
+Although the reputation system decreases the need to computational redundancy
+overhead, it is not trivial to create one in a completely decentralized p2p
+network. Grid computing reputation systems, on the other hand, are easier to 
+develop and maintain since there is no requirement to distribute the reputation
+system - usually small amount of nodes need to know reputation metrics and
+centralization is possible.
+
+[4] Proposes a trust system that uses DHT and CAN to calculate and store the 
+global trust level for each peer.
+
+**Grid computing vs decentralized P2P network**
+
+Grid computing applications have been using verification schemes [1] to ensure
+that outputs sent by peers are correct.
+
+Grid computing and decentralized P2P networks may differ in a way that in grid
+computing networks, the computing requester is unique and centralized (e.g.
+SETI@home data centers request for peers in the network to process input),
+whereas in decentralized P2P networks, any peer in the network is entitles to
+request and serve computation loads. Moreover, in grid computing the reputation
+system can be centralized.
+
+### Protocol for computation verification in P2P network
 
 The protocol is based on sampling the validity of results received. A
 requester runs `F(Ix) = Ox` for a subset of the requested input and verifies
@@ -68,7 +134,9 @@ occurs and flag the provider as untrustworthy to the whole network.
 One technique to flag a provider as untrustworthy may be by gossiping to the
 whole network the invalid result. If the results are signed with the 
 provider's private key, it is possible for all peers in the network to learn
-about it due to the non-repudiation properties of private key signature.
+about it due to the non-repudiation properties of private key signature. There
+are many other reputation systems in P2P networks that can be explored (e.g. DHT
+and CAN based).
 
 ### Applications
 
@@ -81,7 +149,7 @@ on a well known algorithm. The results can be shared across the network. This
 protocol creates the mechanisms and incentives for nodes to use the correct
 indexing algorithm and not spread poisonous indexed results to the network.
 
-**distributed data processing**: applications like SETI@Home and others can
+**distributed grid data processing**: applications like SETI@Home and others can
 leverage this protocol to make sure the data received from other nodes are
 according to the expected algorithm.
 
@@ -167,6 +235,16 @@ result = {
 }
 ``` 
 
-#### Acks
+---
+
+1. [Result Verification and Trust-based Scheduling in Peer-to-Peer Grids](https://ieeexplore.ieee.org/document/1551018/)
+
+2. [Uncheatable Grid Computing](https://ieeexplore.ieee.org/document/1281562/)
+
+3. [Sabotage-tolerance mechanisms for volunteer
+computing systems](https://www.sciencedirect.com/science/article/pii/S0167739X01000772)
+
+4. [The eigentrust algorithm for reputation management in p2p networks](http://ilpubs.stanford.edu:8090/562/1/2002-56.pdf)
+
 
 Thanks @mikhaelsantos and @sergioisidoro for the discussions and ideas

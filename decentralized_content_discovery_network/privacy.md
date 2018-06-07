@@ -1,0 +1,3 @@
+## Privacy
+
+Privacy ensuring mechanisms
