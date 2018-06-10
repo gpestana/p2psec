@@ -11,7 +11,7 @@ network index, process, subscribe, publish and request web content metadata.
 
 > TL;DR: new protocols will inevitably scatter online content
 > across different networks with different communication protocols. current
-> search index engines are not the answer for content discovery on multiple
+> search index engines are not the answer for content discovery in multiple
 > networks.
 
 With the upcoming avalanche of new protocols, p2p and decentralized networks 
@@ -53,15 +53,37 @@ metadata online. The content itself is not stored nor shared in the network. The
 protocol only offers a mechanism for peers to request, subscribe and publish
 metadata of content stored in different networks.
 
+## Protocol anti-principles
 
-The main principles of the content discovery protocol are:
+What the protocol is not:
 
-- **Metadada discovery oriented**: the protocol allows for peers to publish and
-  subscribe content metadata which exists anywhere else.
+- **Blockchain**: at least for now. This is not a project aiming at leveraging
+  the ICO frenzy. We aim at building an easy and cross network protocol for
+discovering content. However, if in the future there is a good reason to use 
+blockchain to achieve our goals, we'll use it.
 
-- **Decentralized and P2P**: 
+- **google**: we are not replacing google or any other current search engine.
+  However, search engines would benefit from participating in the network as 
+peers to serve users.
 
-- **Easy and robust anonymity**
+- **Content delivery P2P network**: the protocol aims at content discovery
+  stored in multiple centralized or decentralized netoworks. The protocol allows
+peers to communicate with each other to query, subscribe and publish metadata
+about online content.
+
+### Protocol principles
+
+- **Metadada discovery oriented**: the protocol facilitates peers to query,
+  subscribe and publish online content metadata from several networks.
+
+- **Decentralized and P2P**: all peers in the network are feature-full and may
+  query and reply to queries from other peers.
+
+- **Embeeded trust mechanisms**
+
+- **Easy and robust anonymity**: strong anonymity should be either embedded in
+  the protocol or relatively easy to setup.
+
 
 ### Research and specs
 
