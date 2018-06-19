@@ -57,6 +57,10 @@ space is used for maintaining the distributed hash table
 the logical space is partitioned among the peers in the network. each peer owns
 a zone in the network.
 
+**CAN - content address network**
+CAN is a distributed system that maps keys onto values; keys hashed into `n` 
+dimensional space
+
 the peers maintain a DHT as described in CAN; CAN builds and maintains an
 overlay network in which every peer has a point assigned within the cartesian
 space (independent of the physical node location). each peer owns its own zone
@@ -67,7 +71,7 @@ coordinates.
 Q-3: does Megdhoot supports infinite `n` attributes in the schema? this would 
 mean a `2n` logical cartesian space which would be infinite.
 
-### Subscription installation
+### subscription installation
 
 first, a peer creating a subscription must calculate in which zone is the
 subscription being installed. after, it should route the subscription request by
@@ -89,3 +93,57 @@ installed
 
 Q-5: still not sure how to calculate in which logical zone the event should be
 redirected to
+
+### load characteristics
+
+a peer may be loaded with subscriptions and/or events -- this means that a peer
+in the network may store a set of subscriptions or a set of events. 
+
+a peer which stores subscriptions is responsible for delivering the events to
+the subscribers. thus a load from subscriptions is proportional to the number of
+subscriptions the peer keeps.
+
+load from event delivering/routing comes from the fact that peers need to route
+the event to the correct zone. in this case, splitting the zone into smaller
+zones does not help, since the routing will most likely pass through the same
+peers.
+
+in order to achieve better load balance for event delivery, loaded zones must be
+replicated and the events should be routed randomly through the multiple paths
+available to reach the event point.
+   
+        
+```
+          _Z1.   
+_ _ _ _ /     \ _ _ _ _ >> 
+        \ _Z2. /
+
+```
+Z1 and Z2 can now split the load for the routing
+
+the zone replication can be achieved by copying all the subscriptions of an
+overloaded node, N1, to a new node, N4, which is joining the network. the 
+neighbors of N1 need to store the address of N4 alongside with N1 and select
+randomly where to route the event (either N1 or N4). this will probabilistically
+split the load on N1 in 50%, since the neighbors have 2 paths where to route the
+event to.
+
+### peer join
+
+when a new peer joins the network, the contacted peer in the network  which is 
+responsible suggest a coordinate to the new peer will check if there are
+overloaded zones. for this, each peer maintains information about its load as
+well as it's neighbors and calculate which peers are most likely loaded the
+most.
+
+when a loaded peer is found, it will decide whether to partition itself when a
+new node joins the network based on local conditions (see paper notes on how to
+find out a loaded node)
+
+if the peer is loaded because of too many subscriptions, then the zone is split
+into two, in order to split the subscription load between the two zones.
+
+---
+
+load:
+ - read and notes: ||
