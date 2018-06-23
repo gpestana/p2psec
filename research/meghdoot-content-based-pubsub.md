@@ -1,4 +1,66 @@
-##Meghdoot: Content-Based Publish/Subscribe over P2P Networks
+#Meghdoot: Content-Based Publish/Subscribe over P2P Networks
+
+Meghdoot implements a content-based publish-subscribe system over a DHT based on
+Content Addressable Network (CAN) by defining algorithms for subscription
+installation and event delivery which improve load distribution and replication
+in P2P content-based pubsub systems. It defines peer management algorithms -
+peer joining the network, peer departure/failure, event delivery and
+subscription installment - to better balance load among peers and scaling up
+well as number of peers, subscriptions and events increase. 
+
+Problem: in a P2P network where peers subscribe to events happening in the
+network, how to make sure that the load is balanced between peers (e.g. not
+a few set of peers are responsible for routing and storing events or
+subscriptions)?
+
+Solution: when storing subscriptions, Meghdoot splits CAN euclidean zones so that
+subscriptions are better spread among peers (subscription load balance). It also
+defines how to add more peers to same zones so that subscriptions are replicated
+in the network to avoid losses of subscriptions when nodes are down. When 
+delivering events, Meghdoot creates alternative propagation event paths in order
+to balance the event delivery load.
+
+### P2P pubsub network using CAN
+
+### Subscription load
+
+### Event load
+
+### Peer join
+
+### Peer departure or failure
+
+### Experimental evaluation
+
+### Questions:
+
+Q: Can Meghdoot algorithm support an infinite set of subscription parameters? 
+(since it uses CAN as the structure p2p overlay, can CAN support it?)
+
+Yes. Meghdoot algorithms for subscription/event delivery are compatible with an
+infinite set of subscription parameters. In CAN, a key is mapped onto a point in
+the logical space. The mapping is calculated by a deterministic hashing
+function. Thus, the hashing function must support deterministic mapping of 
+infinite key values onto the logical space with N dimensions. The more
+dimensions the logical space has, the more subscription storing and routing can 
+load be optimized.
+
+Q: Is there any production P2P network using the Meghdoot protocol? If so, how
+  does it compare with the simulation results?
+
+To my current knowledge, there is no pubsub p2p network using Meghdoot in
+production.
+
+
+### Further reading
+
+[1] [A Scalable Content-Addressable
+Network](https://dl.acm.org/citation.cfm?id=383072)
+---
+
+## notes
+
+> these notes where taken while reading the paper
 
 content based pubsub systems to DHTs over P2P networks with load balancing among
 peers and scalability with increasing number of peers, subscriptions and events
@@ -130,7 +192,7 @@ event to.
 
 ### peer join
 
-when a new peer joins the network, the contacted peer in the network  which is 
+when a new peer joins the network, the contacted peer in the network which is 
 responsible suggest a coordinate to the new peer will check if there are
 overloaded zones. for this, each peer maintains information about its load as
 well as it's neighbors and calculate which peers are most likely loaded the
@@ -143,7 +205,12 @@ find out a loaded node)
 if the peer is loaded because of too many subscriptions, then the zone is split
 into two, in order to split the subscription load between the two zones.
 
+
+### experimental setup
+
+based on
+
 ---
 
 load:
- - read and notes: ||
+ - read and notes: |||
