@@ -1,7 +1,5 @@
 ## Uncoordinated distributed checkpoints
 
-
-
 [1] [Discarding Obsolete Information in a Replicated Database System](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.470.8648)
 
 Algorithm for distributed nodes to locally identify the set of timestamps that 
