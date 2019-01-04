@@ -1,11 +1,13 @@
 ## Information Leaks in Structured Peer-to-Peer Anonymous Communication Systems
 **Prateek Mittal, Nikita Borisov** [2012]
 
-**what**: security and privacy in p2p anonymous communication systems (AP3 and Salsa) is studied with emphasis on the tension between security and privacy: ofter, mechanisms which ensure privacy in p2p systems (e.g. redundancy) end up affecting considerably privacy
+**what**: security and privacy in p2p anonymous communication systems (AP3 and Salsa) are studied with emphasis on the tension between security and privacy: often, mechanisms that ensure security in p2p systems (e.g. redundancy) end up affecting privacy by leaking more information.
 
 **results**: AP3 and Salsa are more vulnerable to passive and active attacks than previously thought. 
 
-**importance**: p2p anonymous communication systems are hard to design and implement. this research also shows how putting together provable secure and anonymous systems may result on weaker systems. abstracting away parts of the p2p network often results in insecure systems.
+**importance**: p2p anonymous communication systems are hard to design and implement. this research also shows how putting together provable secure and anonymous primitives may result on weak systems: the sum of secure parts may end up being a not-as-secure result. abstracting away parts of the p2p network often results in insecure systems.
+
+---
 
 **metadata leaks**: information and metadata leaks can be used to de-anonymise users in P2P networks. thus, not only active attacks should be considered in the P2P context. metadata leaks about user behavior are an important part of the anonymity in p2p systems and must be properly researched and implemented.
 
