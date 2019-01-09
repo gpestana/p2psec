@@ -1,7 +1,7 @@
 ## Towards measuring anonymity
 **Claudia Diaz, Stefaan Seys, Joris Claessens, and Bart Preneel**
 
-**what**: information theoretical model to quantify anonymity of network communications, based on how much information adversaries get about users. the model is applied to existent systems. the focus of the paper is to consider anonymity in mixes.
+**what**: information theoretical model to quantify anonymity of network communications, based on how much information adversaries get about users and the on the probability an adversary assigns to users of the system's anonymity set. the model is applied to existent systems. the focus of the paper is to consider anonymity in mixes.
 
 **results**:
 
@@ -25,9 +25,13 @@
 
 **minimum acceptable degree**: is proposed to be `d = 0.8`, but it depends on the anonymity requirements for the system.
 
-**use cases**: the metric was applied to anonymity systems as a proof of concept (mix networks, crowds and Tor).
+**use cases**: the metric was applied to anonymity systems as a proof of concept (mix networks, crowds and Tor). the paper shows by using the anonymity metric presented that Tor is more tolerant to compromised nodes than Crowds. it also shows how to calculate the minimum anonymity set size of Tor for certain number of Tor users.    
 
-**future work**:
+**future work**: 
+- the model is based on the probability an attacker assigns to users in an anonymity set. finding this probability not trivial for some systems;
+- measure effect of dummy traffic in metric;
+- take into consideration the information an attacker has a priori;
+- apply metric to different systems and test it.
 
 ---
 
