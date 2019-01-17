@@ -30,6 +30,7 @@ literature section is organized as follow:
 *A. Privacy preserving DHT lookups*
 - Octopus: A Secure and Anonymous DHT Lookup
 - Adding Query Privacy to Robust DHTs 
+- Design of PriServ, a privacy service for DHTs
 
 *B. DHTs in anonymous communication systems*
 - Scalable Onion Routing with Torsk
@@ -38,11 +39,13 @@ literature section is organized as follow:
 *C. Privacy mechanisms in P2P networks*
 - HORNET: High-speed Onion Routing at the Network Layer
 - NISAN: Network Information Service for Anonymization Networks
-- ShadowWalker: Peer-to-peer Anonymous Communication Using Redundant Structured i
-Topologies
+- ShadowWalker: Peer-to-peer Anonymous Communication Using Redundant Structured Topologies
+- TAP: A Novel Tunneling Approach for Anonymity in Structured P2P Systems
 
 **Privacy vulnerabilities of DHTs**
 
+- Security Considerations for Peer-to-Peer Distributed Hash Tables
+- Hashing it out in public: common failure modes of DHT-based anonymity schemes
 - Routing in the Dark: Pitch Black
 - Information Leaks in Structured Peer-to-peer Anonymous Communication Systems
 - In Search of an Anonymous and Secure Lookup: Attacks on Structured Peer-to-peer Anonymous Communication Systems
@@ -54,6 +57,10 @@ The paper wraps up outlining future work and research directions.
 
 This is an open research work. Feel free to contribute with ideas, content,
 corrections or to fork it.
+
+**Edit and generate the PDF**: The paper is written in Markdown ([privacy_preserving_dht.md](./privacy_preserving_dht.md)) and the Latex PDF file is generated using `pandoc` and `bibtex` ([privacy_preserving_dht.bib](./privacy_preserving_dht.bib)). To generate the final PDF, use the Makefile steps.
+
+<br><br>
 
 MIT License
 
