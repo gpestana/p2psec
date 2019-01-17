@@ -2,12 +2,11 @@
 
 ![Version](https://img.shields.io/badge/version-draft%20in%20progress%20%200.1-blue.svg?style=for-the-badge)
 
-**note**: the current version of the paper is a draft and in constant review and
-modifications. This is an open research work, feel free to contribute with ideas,
-corrections and content. This work is supported by
-[hashmatter](https://hashmatter.com).
+**note**: The current version of the paper is a draft and being review and
+modified. This is an open research work: feel free to contribute with ideas,
+corrections and content. This work is supported by [hashmatter](https://hashmatter.com).
 
-Abstract **Distributed Hash Tables (DHT) are overlay networks that enable peers to store
+**Abstract** Distributed Hash Tables (DHT) are overlay networks that enable peers to store
 and request data in a peer-to-peer (P2P) network. Peers are responsible for
 storing data and for participating in the lookup and routing protocol. A DHT
 does not require peers to have a complete view of the network and does not rely
@@ -18,32 +17,31 @@ vulnerabilities to the services built on top of it: in naive implementations of
 decentralized networks users potentially disclose private data and metadata to
 many untrusted parties. In this paper we review the literature of mechanisms and
 protocols to achieve privacy preserving DHTs and their vulnerabilities. Finally
-we outline open problems and directions for future research.**
+we outline open problems and directions for future research.
 
 ---
-
-## Mind map
 
 The core of the paper is a literature review of research work on protocols and
 mechanisms for enhancing privacy in DHTs and its vulnerabilities. Currently, the 
 literature section is organized as follow: 
 
-### Privacy preserving DHTs: protocols and mechanisms
-**A. Privacy preserving DHT lookups**
+**Privacy preserving DHTs: protocols and mechanisms**
+
+*A. Privacy preserving DHT lookups*
 - Octopus: A Secure and Anonymous DHT Lookup
 - Adding Query Privacy to Robust DHTs 
 
-**B. DHTs in anonymous communication systems**
+*B. DHTs in anonymous communication systems*
 - Scalable Onion Routing with Torsk
 - Bifrost : A Novel Anonymous Communication System with DHT
 
-**C. Privacy mechanisms in P2P networks**
+*C. Privacy mechanisms in P2P networks*
 - HORNET: High-speed Onion Routing at the Network Layer
 - NISAN: Network Information Service for Anonymization Networks
 - ShadowWalker: Peer-to-peer Anonymous Communication Using Redundant Structured i
 Topologies
 
-### Privacy vulnerabilities
+**Privacy vulnerabilities of DHTs**
 
 - Routing in the Dark: Pitch Black
 - Information Leaks in Structured Peer-to-peer Anonymous Communication Systems
@@ -56,8 +54,6 @@ The paper wraps up outlining future work and research directions.
 
 This is an open research work. Feel free to contribute with ideas, content,
 corrections or to fork it.
-
-## License
 
 MIT License
 
