@@ -3,11 +3,13 @@ title: "Privacy Preserving Distributed Hash Tables - Reality and Future"
 author: "Gonçalo Pestana (goncalo@hashmatter.com)"
 ---
 
-*DRAFT: This document is work in progress. Please send your comments, suggestions and corrections to gpestana@hashmatter.com or join the conversation at https://github.com/gpestana/notes/issues/8*
+*DRAFT: This document is work in progress. Please send your comments, suggestions and corrections to gpestana@hashmatter.com or join the conversation at https://ppdht.hashmatter.com*
 
 # Abstract
 
-**Distributed Hash Tables (DHT) are overlay networks that enable peers to store and request data in a peer-to-peer (P2P) network. Peers are responsible for storing data and for participating in the lookup and routing protocol. A DHT does not require peers to have a complete view of the network and does not rely on central authorities, resulting on resilient, scalable a decentralized networks. DHTs are an important building block for the decentralized web and many P2P systems. However, the decentralized nature of DHTs introduces privacy vulnerabilities to the services built on top of it: in naive implementations of decentralized networks users potentially disclose private data and metadata to many untrusted parties. In this paper we review the literature of mechanisms and protocols to achieve privacy preserving DHTs and their vulnerabilities. Finally we outline open problems and directions for future research.**
+**Distributed Hash Tables (DHT) are overlay networks that enable nodes to store and request data in a peer-to-peer (P2P) network. Data storage and data lookups are resolved collectively through a collaborative routing protocol, which makes storage location deterministic and data lookups possible. The collaborative nature of DHTs results on resilient, scalable and decentralized networks where nodes are not required to maintain a complete view of the network while, simultaneously, not relying on central authorities. These properties make DHTs an important building block for the decentralized web and P2P systems. However, the decentralized nature of DHTs introduces privacy vulnerabilities due to the metadata leaked during the routing and lookup protocols. In naïve DHT implementations, it is trivial for any adversary to gather information about which nodes are requesting what data and which nodes are providing what data, without being detected and with relative low resources. Nowadays, the decentralized web ecosystem is relying heavily on DHTs as networks such as IPFS and Dat are steadily reaching mainstream adoption. Thus, it is important to address privacy preserving vulnerabilities of DHTs. Failing to deliver on user privacy will render decentralized systems unattractive as a viable alternative to centralized systems.  In this paper we review research on mechanisms and protocols to achieve privacy preserving DHTs, outline open problems and directions for future research.**
+
+ A DHT does not require nodes to maintain a complete view of the network and does not rely on central authorities for keeping the current state of the network.
 
 # Introduction
 
@@ -19,6 +21,10 @@ Given its decentralized design and low-latency goals, naive DHT implementations 
 
 This work aims at building the foundations to research and implement privacy preserving DHTs. In the first section, we review protocols and techniques to design and build secure and privacy preserving DHTs and their current implementations. After, we outline vulnerabilities that researchers have found in those mechanisms. We finally discuss future directions for the design and implementation of privacy preserving DHTs taking into considerations how it impacts properties such as decentralization, scalability and performance of the network.
  
+
+- "most of early studies on DHTs focused on extensive simulations, analysis and small scale deployments" -- not so much the case anymore with networks such as bittorrent, IPFS, Dat, etc. [Large-Scale Monitoring of DHT Traffic]
+
+
 # Privacy preserving DHTs: protocols and mechanisms
 
 This section covers the literature on privacy preserving P2P routing mechanisms, with special focus on routing and peer communication in DHTs. We organize this section as follows. We start by focusing on research of protocols for private DHT lookups. Then, we review how anonymous communication protocols have used DHTs as part of the systems and, finally, we present research work on mechanisms for enhancing user privacy in P2P networks that could be adapted to DHTs.
@@ -43,7 +49,7 @@ Torsk [@torsk] is a structured peer-to-peer low-latency anonymity protocol ..
 
 Bifrost [@bifrost] is an anonymous communication protocol that uses Chord DHT as an overlay network for managing node participation and routing tables in the network. The anonymity requirements set by the authors are sender anonymity, receiver anonymity and data flow untraceability. Bifrost maintains a node management layer (NML) and an anonymous routing layer (ARL). The NML is responsible for keeping meta information about the overlay network, more specifically network information about the nodes connected to in the Chord overlay. The ARL is responsible for the actual communication which is similar to onion routing. It including route construction and message encryption and depends on a Public  Key Server infrastructure. Bifrost encrypts the onion packets so that the final destination is in the middle of the onion path, and subsequent relayed messages in the circuit are dummy messages.
 
-## C. Privacy mechanisms in P2P networks
+## C. Privacy protocols and mechanisms in P2P networks
 
 <!-- HORNET -->
 
@@ -57,9 +63,12 @@ Both mechanisms, however, do not protect the lookup initiator against passive at
 
 <!--- #TODO Shadowwalker -->
 
-[@shadowwalker] is ...
+ShadowWalker [@shadowwalker] 
 
-# Privacy vulnerabilities
+P2P networks have high churning. TAP [@tap] defines a protocol for redundant relay circuits, in which in case a hop in the circuit goes down 
+
+
+# Privacy vulnerabilities in DHTs
 
 This section describes the privacy vulnerabilities in DHTs and their protocols.
 
@@ -82,6 +91,10 @@ This section describes the privacy vulnerabilities in DHTs and their protocols.
 # Open questions and future research
 
 - **Implementation of secure and private DHTs protocols and primitives**: The bulk of current DHT implementations seem not to take privacy and security as main priority. Most of the insights from research works on how to design and implement privacy preserving DHTs are not used in real world implementations. Thus, implementing protocols and primitives for network developers to use when building their systems is an important step to improve privacy in deployed and future DHTs networks. 
+
+<!--
+- **Fault-tolerant private routing in DHTs**: P2P networks often experience high churn. Privacy preserving networks a
+-->
 
 - **Privacy and security audits of current DHT systems**: DHTs are being used in multiple services nowadays. [ref, ref, ref, ...]. Throughly study and assess privacy and security of such systems is important to gauge the current state of privacy preserving DHTs in production and to understand what can be further improved. Moreover, raising awareness in research and development community is important to make sure there are active efforts to build secure and privacy preserving networks.
 

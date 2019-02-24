@@ -6,18 +6,7 @@
 modified. This is an open research work: feel free to contribute with ideas,
 corrections and content. This work is supported by [hashmatter](https://hashmatter.com).
 
-**Abstract** Distributed Hash Tables (DHT) are overlay networks that enable peers to store
-and request data in a peer-to-peer (P2P) network. Peers are responsible for
-storing data and for participating in the lookup and routing protocol. A DHT
-does not require peers to have a complete view of the network and does not rely
-on central authorities, resulting on resilient, scalable a decentralized
-networks. DHTs are an important building block for the decentralized web and
-many P2P systems. However, the decentralized nature of DHTs introduces privacy
-vulnerabilities to the services built on top of it: in naive implementations of
-decentralized networks users potentially disclose private data and metadata to
-many untrusted parties. In this paper we review the literature of mechanisms and
-protocols to achieve privacy preserving DHTs and their vulnerabilities. Finally
-we outline open problems and directions for future research.
+**Abstract** Distributed Hash Tables (DHT) are overlay networks that enable nodes to store and request data in a peer-to-peer (P2P) network. Data storage and data lookups are resolved collectively through a collaborative routing protocol, which makes storage location deterministic and data lookups possible. The collaborative nature of DHTs results on resilient, scalable and decentralized networks where nodes are not required to maintain a complete view of the network while, simultaneously, not relying on central authorities. These properties make DHTs an important building block for the decentralized web and P2P systems. However, the decentralized nature of DHTs introduces privacy vulnerabilities due to the metadata leaked during the routing and lookup protocols. In naïve DHT implementations, it is trivial for any adversary to gather information about which nodes are requesting what data and which nodes are providing what data, without being detected and with relative low resources. Nowadays, the decentralized web ecosystem is relying heavily on DHTs as networks such as IPFS and Dat are steadily reaching mainstream adoption. Thus, it is important to address privacy preserving vulnerabilities of DHTs. Failing to deliver on user privacy will render decentralized systems unattractive as a viable alternative to centralized systems.  In this paper we review research on mechanisms and protocols to achieve privacy preserving DHTs, outline open problems and directions for future research.
 
 ---
 
@@ -32,6 +21,13 @@ literature section is organized as follow:
 - Adding Query Privacy to Robust DHTs 
 - Design of PriServ, a privacy service for DHTs
 
+- Information Leaks in Structured Peer-to-Peer Anonymous Communication Systems
+- In search of an anonymous and secure lookup: attacks on structured 
+peer-to-peer anonymous communication systems
+- Anonymous routing in structured peer-to-peer overlays (thesis)
+- Scalable Anonymous Communication with Provable Security
+- Route Fingerprinting in Anonymous Communications
+
 *B. DHTs in anonymous communication systems*
 - Scalable Onion Routing with Torsk
 - Bifrost : A Novel Anonymous Communication System with DHT
@@ -44,6 +40,7 @@ literature section is organized as follow:
 
 **Privacy vulnerabilities of DHTs**
 
+- Large-Scale Monitoring of DHT Traffic
 - Security Considerations for Peer-to-Peer Distributed Hash Tables
 - Hashing it out in public: common failure modes of DHT-based anonymity schemes
 - Routing in the Dark: Pitch Black
@@ -60,7 +57,7 @@ corrections or to fork it.
 
 **Edit and generate the PDF**: The paper is written in Markdown ([privacy_preserving_dht.md](./privacy_preserving_dht.md)) and the Latex PDF file is generated using `pandoc` and `bibtex` ([privacy_preserving_dht.bib](./privacy_preserving_dht.bib)). To generate the final PDF, use the Makefile steps.
 
-<br><br>
+<br>
 
 MIT License
 
