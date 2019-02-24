@@ -3,7 +3,7 @@
 
 **what**: TAP is a tunneling approach for anonymity in structured P2P networks, with secure, replicated and fault-tolerant channels relying on the P2P structure.  
 
-**results**: 
+**results**: secure tunneling using P2P structured networks. 
 
 **importance**: TAP decouples anonymous circuits from fixed nodes, which means that maintaining secure paths will not stop functioning when relays leave the network. TAP helps building secure circuits in P2P networks which are robust against churn.
 
@@ -13,8 +13,10 @@
 
 **a problem with privacy preserving P2P relaying systems**: is the instability of the paths created: when relays leave the network, the secure circuit created will not work anymore.
 
+**idea**: the basic idea of TAP is for a message initiator to build circuits with replicated hops. this means that each of hops in the circuit has at least a redundant hop which also knows the symmetric key that is used to decrypt and relay the packet. the index of the relayers per hop (i.e. the list with the hops that can decrypt and relay the package) is stored in a structured P2P network, such as a DHT and have the form of tunnel hop anchor (see below). 
+
 **security considerations**: 
-- attack surface increase: the replication of the tunnel hop information increases the attack surface for adversaries which control large numbers of colluding nodes to compromise anonymity. The authors argue that TAP aims at creating a balance between anonymity and reliability and it does not aim at perfect anonymity.
+- attack surface increases: the replication of the tunnel hop information increases the attack surface for adversaries which control large numbers of colluding nodes to compromise anonymity. The authors argue that TAP aims at creating a balance between anonymity and reliability and it does not aim at perfect anonymity.
 - DoS attacks: attackers may perform a denial of service attack by flooding the network with THAs so that new THAs cannot be installed. This can be avoided by requiring computational expensive challenges before installing THAs in order to limit the capacity of Dos attacks.
 
 **tunnel hop anchor**: (THA) is the data structure with the information necessary for a node to function as a tunnel relay. A THA as a form of `<hop_ID, K, Hash(password)>`. The `hop_ID` uniquely identifies the tunnel hop and functions as a DHT key; the K is a symmetric key for encryption/decryption and `Hash(password)` is the hash of the password to control the tunnel. 
